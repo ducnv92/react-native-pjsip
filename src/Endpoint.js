@@ -674,15 +674,15 @@ export default class Endpoint extends EventEmitter {
     _normalize(account, destination) {
         if (!destination.startsWith("sip:")) {
             let realm = account.getRegServer();
+            realm = account.getDomain();
+//             if (!realm) {
+//                 realm = account.getDomain();
+//                 let s = realm.indexOf(":");
 
-            if (!realm) {
-                realm = account.getDomain();
-                let s = realm.indexOf(":");
-
-                if (s > 0) {
-                    realm = realm.substr(0, s + 1);
-                }
-            }
+//                 if (s > 0) {
+//                     realm = realm.substr(0, s + 1);
+//                 }
+//             }
 
             destination = "sip:" + destination + "@" + realm;
         }
